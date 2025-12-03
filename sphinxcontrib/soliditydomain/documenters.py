@@ -124,7 +124,7 @@ class SolidityObjectDocumenter(Documenter):
 
             expressions.append(expr)
 
-        should_exclude_private = '<private>' in self.options.exclude_members
+        should_exclude_private = self.options.exclude_members and '<private>' in self.options.exclude_members
         for member in SolidityObject.select().where(*expressions):
             if member.objtype == 'function':
                 is_public = 'public' in member.signature or 'external' in member.signature
